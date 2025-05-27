@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes Risk Prediction - DiabetesAI</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <div class="brand-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <span class="brand-text">DiabetesAI</span>
+            </a>
+            <div class="nav-menu">
+                <a href="dashboard.html" class="btn btn-outline">Dashboard</a>
+                <a href="index.html" class="btn btn-ghost">Home</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="predict-container">
+        <div class="container">
+            <div class="predict-header">
+                <h1 class="predict-title">Diabetes Risk Prediction</h1>
+                <p class="predict-description">
+                    Enter your health information to get an AI-powered diabetes risk assessment
+                </p>
+            </div>
+
+            <div class="predict-content">
+                <!-- Input Form -->
+                <div class="predict-form-card">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <i class="fas fa-heartbeat"></i>
+                            Health Information
+                        </h2>
+                        <p class="card-description">Please provide accurate information for the best prediction results</p>
+                    </div>
+                    <div class="card-content">
+                        <form id="prediction-form" class="prediction-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="pregnancies">Pregnancies</label>
+                                    <input type="number" id="pregnancies" name="pregnancies" min="0" max="20" value="0" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="age">Age</label>
+                                    <input type="number" id="age" name="age" min="18" max="100" value="30" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="glucose">Glucose Level (mg/dL): <span id="glucose-value">120</span></label>
+                                <input type="range" id="glucose" name="glucose" min="70" max="200" value="120" class="slider">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="bloodPressure">Blood Pressure (mmHg): <span id="bloodPressure-value">80</span></label>
+                                <input type="range" id="bloodPressure" name="bloodPressure" min="50" max="150" value="80" class="slider">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="skinThickness">Skin Thickness (mm): <span id="skinThickness-value">20</span></label>
+                                <input type="range" id="skinThickness" name="skinThickness" min="10" max="50" value="20" class="slider">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="insulin">Insulin (μU/mL): <span id="insulin-value">80</span></label>
+                                <input type="range" id="insulin" name="insulin" min="20" max="200" value="80" class="slider">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="bmi">BMI: <span id="bmi-value">25.0</span></label>
+                                <input type="range" id="bmi" name="bmi" min="15" max="50" value="25" step="0.1" class="slider">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="diabetesPedigree">Diabetes Pedigree Function: <span id="diabetesPedigree-value">0.50</span></label>
+                                <input type="range" id="diabetesPedigree" name="diabetesPedigree" min="0" max="2" value="0.5" step="0.01" class="slider">
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-full" id="predict-btn">
+                                <i class="fas fa-brain"></i>
+                                Predict Diabetes Risk
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Results -->
+                <div class="predict-results-card">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <i class="fas fa-chart-line"></i>
+                            Prediction Results
+                        </h2>
+                        <p class="card-description">AI-powered analysis of your diabetes risk</p>
+                    </div>
+                    <div class="card-content">
+                        <div id="results-placeholder" class="results-placeholder">
+                            <i class="fas fa-heart"></i>
+                            <p>Complete the form to get your diabetes risk prediction</p>
+                        </div>
+                        <div id="prediction-results" class="prediction-results" style="display: none;">
+                            <div class="risk-score">
+                                <div class="risk-percentage" id="risk-percentage">0.0%</div>
+                                <div class="risk-badge" id="risk-badge">Low Risk</div>
+                            </div>
+                            
+                            <div class="progress-container">
+                                <div class="progress-label">
+                                    <span>Risk Level</span>
+                                    <span id="progress-value">0.0%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="progress-fill"></div>
+                                </div>
+                            </div>
+
+                            <div class="risk-factors">
+                                <h3 class="section-subtitle">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                    Key Risk Factors
+                                </h3>
+                                <div id="risk-factors-list" class="factors-list"></div>
+                            </div>
+
+                            <div class="recommendations">
+                                <h3 class="section-subtitle">
+                                    <i class="fas fa-check-circle"></i>
+                                    Recommendations
+                                </h3>
+                                <div id="recommendations-list" class="recommendations-list"></div>
+                            </div>
+
+                            <div class="disclaimer">
+                                <p>
+                                    <strong>Disclaimer:</strong> This prediction is for educational purposes only and should not
+                                    replace professional medical advice. Please consult with a healthcare provider for proper
+                                    diagnosis and treatment.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="predict.js"></script>
+</body>
+</html>

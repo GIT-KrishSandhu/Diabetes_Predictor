@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics Dashboard - DiabetesAI</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <div class="brand-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <span class="brand-text">DiabetesAI</span>
+            </a>
+            <div class="nav-menu">
+                <a href="predict.html" class="btn btn-primary">New Prediction</a>
+                <a href="index.html" class="btn btn-ghost">Home</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <div class="container">
+            <div class="dashboard-header">
+                <h1 class="dashboard-title">Analytics Dashboard</h1>
+                <p class="dashboard-description">Monitor model performance and prediction analytics in real-time</p>
+            </div>
+
+            <!-- Key Metrics -->
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-label">Total Predictions</span>
+                        <i class="fas fa-users metric-icon"></i>
+                    </div>
+                    <div class="metric-value" id="total-predictions">0</div>
+                    <div class="metric-change">+12% from last month</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-label">Model Accuracy</span>
+                        <i class="fas fa-bullseye metric-icon"></i>
+                    </div>
+                    <div class="metric-value">95.2%</div>
+                    <div class="metric-change">+0.3% improvement</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-label">High Risk Detected</span>
+                        <i class="fas fa-exclamation-circle metric-icon"></i>
+                    </div>
+                    <div class="metric-value">1,247</div>
+                    <div class="metric-change">12.2% of total predictions</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-label">Avg Response Time</span>
+                        <i class="fas fa-clock metric-icon"></i>
+                    </div>
+                    <div class="metric-value">1.2s</div>
+                    <div class="metric-change">-0.3s faster than average</div>
+                </div>
+            </div>
+
+            <div class="dashboard-grid">
+                <!-- Model Performance -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <i class="fas fa-chart-bar"></i>
+                            Model Performance Metrics
+                        </h2>
+                        <p class="card-description">Key performance indicators for the diabetes prediction model</p>
+                    </div>
+                    <div class="card-content">
+                        <div class="performance-metrics">
+                            <div class="metric-item">
+                                <div class="metric-info">
+                                    <span class="metric-name">Accuracy</span>
+                                    <span class="metric-percent">95.2%</span>
+                                </div>
+                                <div class="metric-bar">
+                                    <div class="metric-fill" style="width: 95.2%"></div>
+                                </div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-info">
+                                    <span class="metric-name">Precision</span>
+                                    <span class="metric-percent">93.8%</span>
+                                </div>
+                                <div class="metric-bar">
+                                    <div class="metric-fill" style="width: 93.8%"></div>
+                                </div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-info">
+                                    <span class="metric-name">Recall</span>
+                                    <span class="metric-percent">91.5%</span>
+                                </div>
+                                <div class="metric-bar">
+                                    <div class="metric-fill" style="width: 91.5%"></div>
+                                </div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-info">
+                                    <span class="metric-name">F1-Score</span>
+                                    <span class="metric-percent">92.6%</span>
+                                </div>
+                                <div class="metric-bar">
+                                    <div class="metric-fill" style="width: 92.6%"></div>
+                                </div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-info">
+                                    <span class="metric-name">AUC-ROC</span>
+                                    <span class="metric-percent">96.1%</span>
+                                </div>
+                                <div class="metric-bar">
+                                    <div class="metric-fill" style="width: 96.1%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Predictions -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <i class="fas fa-chart-line"></i>
+                            Recent Predictions
+                        </h2>
+                        <p class="card-description">Latest diabetes risk assessments</p>
+                    </div>
+                    <div class="card-content">
+                        <div class="predictions-list" id="recent-predictions">
+                            <!-- Predictions will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature Importance Chart -->
+            <div class="dashboard-card full-width">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <i class="fas fa-brain"></i>
+                        Feature Importance Analysis
+                    </h2>
+                    <p class="card-description">Impact of different health factors on diabetes prediction</p>
+                </div>
+                <div class="card-content">
+                    <canvas id="featureChart" width="400" height="200"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>
