@@ -74,7 +74,7 @@ You can install dependencies with:
 ``` bash
 pip install -r requirements.txt
 ```
----*-
+---
 
 ## 👨‍💻 Authors
  - jahnavi1523 (202401100300130)
